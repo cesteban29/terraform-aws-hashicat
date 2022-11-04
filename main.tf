@@ -135,7 +135,7 @@ resource "aws_instance" "hashicat" {
       type        = "ssh"
       user        = "ubuntu"
       private_key = tls_private_key.hashicat.private_key_pem
-      host        = aws_eip.hashicat.public_ip
+      host        = self.public_ip
     }
   }
 }
@@ -158,11 +158,7 @@ resource "tls_private_key" "hashicat" {
   algorithm = "RSA"
 }
 
-locals {
-  private_key_filename = "${var.prefix}-ssh-key.pem"
-}
-
 resource "aws_key_pair" "hashicat" {
-  key_name   = local.private_key_filename
+  key_name   = "hashicat-keypair"
   public_key = tls_private_key.hashicat.public_key_openssh
 }
