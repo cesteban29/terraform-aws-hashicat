@@ -139,7 +139,7 @@ resource "null_resource" "configure-cat-app" {
   }
 
   provisioner "file" {
-    source      = "files/"
+    source      = "files/deploy_app.sh"
     destination = "/home/ubuntu/"
 
     connection {
