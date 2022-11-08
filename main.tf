@@ -138,18 +138,6 @@ resource "null_resource" "configure-cat-app" {
     build_number = timestamp()
   }
 
-  provisioner "file" {
-    source      = "files/deploy_app.sh"
-    destination = "/home/ubuntu/"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = tls_private_key.hashicat.private_key_pem
-      host        = aws_eip.hashicat.public_ip
-    }
-  }
-
   provisioner "remote-exec" {
     inline = [
       "sudo apt -y update",
