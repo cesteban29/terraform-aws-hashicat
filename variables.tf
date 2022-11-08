@@ -11,6 +11,11 @@ variable "prefix" {
 }
 
 variable "region" {
+  description = "the region where this will be deployed"
+}
+
+variable "instance_ami"{
+  description = "Use the packer ami with apache and hashicat"
 }
 
 variable "address_space" {
