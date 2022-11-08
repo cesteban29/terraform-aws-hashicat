@@ -89,6 +89,10 @@ resource "aws_eip_association" "hashicat" {
   allocation_id = aws_eip.hashicat.id
 }
 
+resource "tls_private_key" "hashicat" {
+  algorithm = "RSA"
+}
+
 resource "aws_key_pair" "hashicat" {
   key_name   = "hashicat-keypair"
   public_key = tls_private_key.hashicat.public_key_openssh
